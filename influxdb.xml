@@ -12,8 +12,7 @@
     [b]/var/lib/influxdb[/b] Persistent data storage location[br]
     [br]
     [b]Container Ports:[/b][br]
-    [b]8083[/b] Web admin interface[br]
-    [b]8086[/b] HTTP API port[br]
+    [b]8086[/b] Web admin interface and HTTP API port[br]
   </Description>
   <Overview>
     InfluxDB is an open source time series database with no external dependencies. It's useful for recording metrics, events, and performing analytics.
@@ -29,11 +28,6 @@
     <Mode>bridge</Mode>
     <Publish>
       <Port>
-        <HostPort>8083</HostPort>
-        <ContainerPort>8083</ContainerPort>
-        <Protocol>tcp</Protocol>
-      </Port>
-      <Port>
         <HostPort>8086</HostPort>
         <ContainerPort>8086</ContainerPort>
         <Protocol>tcp</Protocol>
@@ -44,8 +38,8 @@
   </Environment>
   <Data>
     <Volume>
-      <HostDir>/mnt/user/appdata/influxdb</HostDir>
-      <ContainerDir>/var/lib/influxdb</ContainerDir>
+      <HostDir>/mnt/user/appdata/influxdb/config</HostDir>
+      <ContainerDir>/etc/influxdb2</ContainerDir>
       <Mode>rw</Mode>
     </Volume>
     <Volume>
@@ -54,7 +48,7 @@
       <Mode>rw</Mode>
     </Volume>
   </Data>
-  <WebUI>http://[IP]:[PORT:8083]/</WebUI>
+  <WebUI>http://[IP]:[PORT:8086]/</WebUI>
   <Banner></Banner>
   <Icon>https://raw.githubusercontent.com/pootzko/InfluxData.Net/master/nuget-icon.png</Icon>
   <ExtraParams></ExtraParams>
